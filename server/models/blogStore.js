@@ -1,5 +1,13 @@
+import { dummyPosts } from "../data/dummyData.js";
+
 let blogPosts = [];
 let nextId = 1;
+
+export const initializeStore = () => {
+    blogPosts = [...dummyPosts];
+    nextId = Math.max(...blogPosts.map(post => post.id)) + 1;
+    console.log(`Blog store initialized with ${blogPosts.length} posts. Next ID: ${nextId}`);
+};
 
 export const createPost = (title, content, author) => {
     const newPost = {
