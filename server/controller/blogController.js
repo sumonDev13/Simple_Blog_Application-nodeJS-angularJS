@@ -65,7 +65,7 @@ export const updatePost = (req, res, next) => {
         res.json({
             statusCode:StatusCodes.OK,
             message: 'Post updated successfully',
-            post: updatePost
+            post: updatedPost
         });
     } catch (error) {
         next(error);
