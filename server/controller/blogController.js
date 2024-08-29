@@ -1,4 +1,5 @@
 import * as blogStore from "../models/blogStore.js";
+import StatusCodes from 'http-status-codes';
 
 export const createPost = (req, res, next) => {
     try {
@@ -9,7 +10,11 @@ export const createPost = (req, res, next) => {
             throw error;
         }
         const newPost = blogStore.createPost(title, content, author);
-        res.status(201).json(newPost);
+        res.status(201).json({
+            statusCode:StatusCodes.CREATED,
+            message: 'Post created successfully',
+            post: newPost
+        });
     } catch (error) {
         next(error);
     }
@@ -18,7 +23,11 @@ export const createPost = (req, res, next) => {
 export const getAllPosts = (req, res, next) => {
     try {
         const posts = blogStore.getAllPosts();
-        res.json(posts);
+        res.json({
+            statusCode:StatusCodes.OK,
+            message: 'Get all posts successfully',
+            post: posts
+        });
     } catch (error) {
         next(error);
     }
@@ -33,7 +42,11 @@ export const getPost = (req, res, next) => {
             error.statusCode = 404;
             throw error;
         }
-        res.json(post);
+        res.json({
+            statusCode:StatusCodes.OK,
+            message: 'Found the post successfully',
+            post: post
+        });
     } catch (error) {
         next(error);
     }
@@ -49,7 +62,11 @@ export const updatePost = (req, res, next) => {
             error.statusCode = 404;
             throw error;
         }
-        res.json(updatedPost);
+        res.json({
+            statusCode:StatusCodes.OK,
+            message: 'Post updated successfully',
+            post: updatePost
+        });
     } catch (error) {
         next(error);
     }
@@ -64,7 +81,11 @@ export const deletePost = (req, res, next) => {
             error.statusCode = 404;
             throw error;
         }
-        res.status(204).send();
+        res.status(200).json({
+            statusCode:StatusCodes.OK,
+            message: 'Post deleted successfully',
+            post: deleted
+        });
     } catch (error) {
         next(error);
     }
