@@ -1,0 +1,17 @@
+<h1>My Blog</h1>
+
+<!-- List of blog posts -->
+<ul>
+  <li *ngFor="let post of blogPosts">
+    {{ post.title }}
+    <button (click)="editPost(post)">Edit</button>
+    <button (click)="deletePost(post)">Delete</button>
+  </li>
+</ul>
+
+<!-- Form for creating/editing blog posts -->
+<form (ngSubmit)="savePost()">
+  <input [(ngModel)]="currentPost.title" name="title" required placeholder="Title">
+  <textarea [(ngModel)]="currentPost.content" name="content" required placeholder="Content"></textarea>
+  <button type="submit">{{ isEditing ? 'Update' : 'Create' }} Post</button>
+</form>
