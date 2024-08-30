@@ -3,6 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { BlogPost } from '../interfaces/blog.model';
 
+interface ApiResponse {
+  statusCode: number;
+  message: string;
+  post: BlogPost[];
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,19 +18,14 @@ export class BlogService {
   constructor(private http: HttpClient) {}
 
   getPosts(): Observable<BlogPost[]> {
-    return this.http.get<any>(this.apiUrl).pipe(
+    return this.http.get<ApiResponse>(this.apiUrl).pipe(
       map(response => {
-        // Check if the response is an object with a 'posts' property
-        if (response && typeof response === 'object' && response.posts) {
-          return response.posts as BlogPost[];
+        if (response && response.post && Array.isArray(response.post)) {
+          return response.post;
+        } else {
+          console.error('Unexpected API response format', response);
+          return [];
         }
-        // If it's already an array, return it directly
-        if (Array.isArray(response)) {
-          return response as BlogPost[];
-        }
-        // If we can't find an array of posts, return an empty array
-        console.error('Unexpected API response format', response);
-        return [] as BlogPost[];
       })
     );
   }
