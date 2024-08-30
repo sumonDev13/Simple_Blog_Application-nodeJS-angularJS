@@ -15,8 +15,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class BlogListComponent {
   blogPosts: BlogPost[] = [];
-  currentPost: BlogPost = { id: null, title: '', content: '' };
+  currentPost: BlogPost = { id: 0, title: '', content: '', author: '', created_at: new Date().toISOString() };
   isEditing = false;
+  loading = true;
+  error: string | null = null;
 
   constructor(private blogService: BlogService) {}
 
@@ -70,7 +72,7 @@ export class BlogListComponent {
   }
 
   resetForm() {
-    this.currentPost = { id: null, title: '', content: '' };
+    this.currentPost = { id: null, title: '', content: '',author:'',created_at:'' };
     this.isEditing = false;
   }
 }
