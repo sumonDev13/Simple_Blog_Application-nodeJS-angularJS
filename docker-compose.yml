@@ -10,4 +10,16 @@ services:
      dockerfile: Dockerfile
     ports:
      - 3000:3000
+
+  client:
+    container_name: blog_client
+    restart: unless-stopped
+    image: blog-api-client-prod:1.0
+    build:
+     context: client
+     dockerfile: Dockerfile
+    ports:
+     - 4200:4200
+    depends_on:
+     - server
  
