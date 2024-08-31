@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  server:
+    container_name: blog_server
+    restart: unless-stopped
+    image: blog-api-prod:1.0
+    build:
+     context: server
+     dockerfile: Dockerfile
+    ports:
+     - 3000:3000
+ 
