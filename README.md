@@ -5,10 +5,10 @@ This is a task from Apurba Technologies Ltd.
 ## Table of Contents
 
 - Installation :
-- 
 - Usage
 - Features
-& this task contains with
+
+
 ● Backend Development (Node.js):
 ○ Written a RESTful API to handle the CRUD operations for blog posts.
 ○ Each blog have the following properties:
@@ -41,7 +41,7 @@ This is a task from Apurba Technologies Ltd.
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/yourproject.git
+    git clone git@github.com:sumonDev13/Simple_Blog_Application-nodeJS-angularJS.git
     cd yourproject
     ```
 
