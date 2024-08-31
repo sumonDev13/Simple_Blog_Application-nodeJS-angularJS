@@ -1,5 +1,10 @@
 <h1>My Blog</h1>
 
+<!-- Button to open the modal -->
+<div class="button-container">
+  <button (click)="openModal()">Create New Post</button>
+</div>
+
 <!-- Loading indicator -->
 <p *ngIf="loading">Loading posts...</p>
 
@@ -17,10 +22,15 @@
   </li>
 </ul>
 
-<!-- Form for creating/editing blog posts -->
-<form (ngSubmit)="savePost()">
-  <input [(ngModel)]="currentPost.title" name="title" required placeholder="Title">
-  <textarea [(ngModel)]="currentPost.content" name="content" required placeholder="Content"></textarea>
-  <input [(ngModel)]="currentPost.author" name="author" required placeholder="Author">
-  <button type="submit">{{ isEditing ? 'Update' : 'Create' }} Post</button>
-</form>
+<!-- Modal for creating/editing blog posts -->
+<div class="modal" [class.show]="isModalOpen">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">×</span>
+    <form (ngSubmit)="savePost()">
+      <input [(ngModel)]="currentPost.title" name="title" required placeholder="Title">
+      <textarea [(ngModel)]="currentPost.content" name="content" required placeholder="Content"></textarea>
+      <input [(ngModel)]="currentPost.author" name="author" required placeholder="Author">
+      <button type="submit">{{ isEditing ? 'Update' : 'Create' }} Post</button>
+    </form>
+  </div>
+</div>

@@ -19,6 +19,7 @@ export class BlogListComponent {
   isEditing = false;
   loading = true;
   error: string | null = null;
+  isModalOpen = false;
 
   constructor(private blogService: BlogService) {}
 
@@ -69,6 +70,7 @@ export class BlogListComponent {
   editPost(post: BlogPost) {
     this.currentPost = { ...post };
     this.isEditing = true;
+    this.openModal();
   }
 
   savePost() {
@@ -90,9 +92,11 @@ export class BlogListComponent {
             this.blogPosts.push(savedPost);
           }
           this.resetForm();
+          this.closeModal();
         }),
         finalize(() => {
           this.loading = false;
+          window.location.reload();
         })
       ).subscribe(
         () => {},
@@ -111,5 +115,13 @@ export class BlogListComponent {
     this.isEditing = false;
     this.loading = false;
     this.error = null;
+  }
+
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
   }
 }
