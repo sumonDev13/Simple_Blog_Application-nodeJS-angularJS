@@ -1,13 +1,31 @@
-FROM node:22-alpine as angular
+# Stage 1: Build the Angular application
+FROM node:22 as build
 
-WORKDIR /app
+WORKDIR /client
 
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci
+
+# Copy the rest of the application code
 COPY . .
-RUN npm install
+
+# Build the application
 RUN npm run build
 
+# Stage 2: Serve the application using Nginx
+FROM nginx:1.18-alpine
 
-FROM httpd:alpine3.15
+# Copy the build output to replace the default nginx contents
+COPY --from=build /client/dist/client/browser /usr/share/nginx/html
 
-WORKDIR /usr/local/apache2/htdocs
-COPY --from=angular /app/dist/client .
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx server
+CMD ["nginx", "-g", "daemon off;"]
+
+#docker build . -t blog-client
+#docker run -p 8008:80 -d blog-client
