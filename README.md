@@ -1,12 +1,72 @@
 # Simple_Blog_Application
 
-This is a task from Apurba Technologies Ltd.
-
 ## Table of Contents
 
 - Installation :
 - Usage
+- Docker Usage
 - Features
+
+
+### Prerequisites
+
+- Node.js (version 22.17.0)
+- Angular CLI (18.2.1)
+- Docker
+- Docker-Compose
+
+  
+## Installation Steps
+
+1. Clone the repository:
+    ```bash
+    git clone git@github.com:sumonDev13/Simple_Blog_Application-nodeJS-angularJS.git
+    cd yourproject
+    ```
+
+2. Navigate to the NodeJS project directory and install dependencies:
+    ```bash
+    cd server
+    npm install
+    npm run dev
+    ```
+3. Navigate to the AngularJS project directory and install dependencies:
+    ```bash
+    cd client
+    npm install
+    npm start
+    ```
+
+## Docker Usage:
+1.Client
+```bash
+    cd client
+    docker build . -t blog-client
+    docker run -p 8008:80 -d blog-client
+```
+2.Server
+```bash
+    cd server
+    docker build . -t my-app:1.0
+    docker run my-app:1.0
+```
+
+
+
+### Deploy the Application with Docker
+ ```bash
+    cd simple_blog_application
+    docker-compose build
+    docker-compose up
+ ```
+
+### Test the server endpoint
+ ```bash
+    cd server
+    npm test
+ ```
+
+## Features
 
 
 ● Backend Development (Node.js):
@@ -26,67 +86,6 @@ This is a task from Apurba Technologies Ltd.
 ■ Create a new blog post.
 ■ Edit an existing blog post.
 ■ Delete a blog post.
-○ Frontend connects properly with the backend API.
-- Contributing
-- License
+○ Frontend connected properly with the backend API.
 
-## Installation
 
-### Prerequisites
-
-- Node.js (version 22.17.0)
-- Angular CLI (18.2.1)
-
-### Steps
-
-1. Clone the repository:
-    ```bash
-    git clone git@github.com:sumonDev13/Simple_Blog_Application-nodeJS-angularJS.git
-    cd yourproject
-    ```
-
-2. Install dependencies:
-    ```bash
-    npm install
-    ```
-
-3. Navigate to the Angular project directory and install dependencies:
-    ```bash
-    cd client
-    npm install
-    ```
-
-## Usage
-
-### Running the Application
-
-1. Start the Node.js server:
-    ```bash
-    npm start
-    ```
-
-2. Navigate to the Angular project directory and start the Angular development server:
-    ```bash
-    cd client
-    ng serve
-    ```
-
-3. Open your browser and go to `http://localhost:4200`.
-
-## Features
-
-- Feature 1
-- Feature 2
-- Feature 3
-
-## Contributing
-
-1. Fork the repository.
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4. Push to the branch (`git push origin feature/AmazingFeature`).
-5. Open a Pull Request.
-
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
