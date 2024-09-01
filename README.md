@@ -53,7 +53,7 @@
 
 
 
-### Deploy the Application with Docker
+### Run the Application on Docker Container
  ```bash
     cd simple_blog_application
     docker-compose build
